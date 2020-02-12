@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form onsubmit="processForm(event)">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Phone Number <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Address</ion-label>
+        <ion-input placeholder="Address Line 1"></ion-input>
+        <ion-input placeholder="Address Line 2"></ion-input>
+        <ion-input placeholder="City"></ion-input>
+        <ion-input placeholder="State"></ion-input>
+        <ion-input placeholder="Zip Code"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Notes</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+
+
+      <ion-radio-group
+              (ionChange)="changeF()" >
+        <ion-list-header>
+          <ion-label>Identity</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>vendor</ion-label>
+          <ion-radio slot="start" color="primary" value="v"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>customer</ion-label>
+          <ion-radio (click)="changeF" slot="start" color="primary" value="c"></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-list >
+      <ion-list-header>Types</ion-list-header>
+      <ion-item>
+        <ion-label>Appliances</ion-label>
+        <ion-checkbox color="dark" checked slot="start"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox color="dark" slot="start"></ion-checkbox>
+        <ion-label>Electrical</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox color="dark" slot="start"></ion-checkbox>
+        <ion-label>Plumbing</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox color="dark" slot="start"></ion-checkbox>
+        <ion-label>Home Cleaning</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox color="dark" slot="start"></ion-checkbox>
+        <ion-label>Tutoring</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox color="dark" slot="start"></ion-checkbox>
+        <ion-label>Packaging and Moving</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox color="dark" slot="start"></ion-checkbox>
+        <ion-label>Computer Repair</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox color="dark" slot="start"></ion-checkbox>
+        <ion-label>Home Repair and Painting</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox color="dark" slot="start"></ion-checkbox>
+        <ion-label>Pest Control</ion-label>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">Create account</ion-button>
+    </div>
+  </form>
+</ion-content>
+
+
+<script>
+    $(':radio').click(function(){
+        this.flag = !this.flag;
+        console.log('SSSSSSs');
+    }
+    const controller = document.querySelector('ion-alert-controller');
+    let firstName, lastName;
+
+    function processForm(event) {
+        event.preventDefault();
+        controller.create({
+            header: 'Account Created',
+            message: `Created account for: <b>${firstName} ${lastName}</b>`,
+            buttons: [{
+                text: 'OK'
+            }]
+        }).then(alert => alert.present());
+    }
+
+    function handleFirstNameValue(event) {
+        firstName = event.target.value;
+    }
+
+    function handleLastNameValue(event) {
+        lastName = event.target.value;
+    }
+</script>

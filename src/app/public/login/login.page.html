@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Welcome to ServeME</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Username:</ion-label>
+    <ion-input placeholder="username" username="username" required type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Password:</ion-label>
+    <ion-input placeholder="password" password="password" required type="text" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <a routerLink="/tabs" routerLinkActive="active" class="underline"> Guest </a>
+  </ion-item>
+
+  <ion-button (click)="login()" expand="block">Login</ion-button>
+  <ion-button (click)="register()" expand="block">Register</ion-button>
+</ion-content>
+
+<style>
+  .underline {
+    text-decoration: underline;
+  }
+</style>
+
