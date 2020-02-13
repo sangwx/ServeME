@@ -12,6 +12,7 @@ export class LoginPage implements OnInit {
     ngOnInit() {
     }
     login() {
+        this.router.navigate(['tabs']);
     }
     register() {
         this.router.navigate(['register']);

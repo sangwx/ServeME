@@ -14,13 +14,11 @@ export class RegisterPage implements OnInit {
 
     ngOnInit() {
     }
-    changeT() {
-        this.flag = true;
-        console.log('TTTT' + this.flag);
-    }
-    changeF() {
+    change() {
         this.flag = !this.flag;
         console.log('FFFF' + this.flag);
+    }
+    register() {
     }
 
 }
