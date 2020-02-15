@@ -12,28 +12,33 @@
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
         <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" value="firstName" oninput="handleFirstNameValue(event)"></ion-input>
+        <ion-input required type="text" value="firstName" [ngModel]="customer.firstName" ng-minlength="1" ng-maxlength="8""></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" value="lastName" oninput="handleLastNameValue(event)"></ion-input>
+        <ion-input required type="text" value="lastName" [ngModel]="customer.lastName" ng-minlength="1" ng-maxlength="8""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Password <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" value="lastName" [ngModel]="customer.password" ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z_]{2,29}$/"
+                   ng-minlength="6" "></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Phone Number <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" value="phoneNumber"></ion-input>
+        <ion-input required type="text" value="phoneNumber" [ngModel]="customer.phoneNumber" ng-pattern="/^\d{6,12}$/"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" value="email"></ion-input>
+        <ion-input required type="text" value="email" [ngModel]="customer.email"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item [ngModel]="customer.address">
         <ion-label position="stacked">Address</ion-label>
-        <ion-input placeholder="Address Line 1"></ion-input>
-        <ion-input placeholder="Address Line 2"></ion-input>
+        <ion-input placeholder="Address"></ion-input>
         <ion-input placeholder="City"></ion-input>
         <ion-input placeholder="State"></ion-input>
         <ion-input placeholder="Zip Code"></ion-input>
@@ -56,7 +61,7 @@
 
         <ion-item>
           <ion-label>customer</ion-label>
-          <ion-radio  slot="start" color="primary" value="c"></ion-radio>
+          <ion-radio  slot="start" color="primary" value="c" [ngModel]="customer.identity"></ion-radio>
         </ion-item>
 
       </ion-radio-group>
@@ -110,26 +115,26 @@
 </ion-content>
 
 
-<script>
-    const controller = document.querySelector('ion-alert-controller');
-    let firstName, lastName;
+<!--<script>-->
+    <!--const controller = document.querySelector('ion-alert-controller');-->
+    <!--let firstName, lastName;-->
 
-    function processForm(event) {
-        event.preventDefault();
-        controller.create({
-            header: 'Account Created',
-            message: `Created account for: <b>${firstName} ${lastName}</b>`,
-            buttons: [{
-                text: 'OK'
-            }]
-        }).then(alert => alert.present());
-    }
+    <!--function processForm(event) {-->
+        <!--event.preventDefault();-->
+        <!--controller.create({-->
+            <!--header: 'Account Created',-->
+            <!--message: `Created account for: <b>${firstName} ${lastName}</b>`,-->
+            <!--buttons: [{-->
+                <!--text: 'OK'-->
+            <!--}]-->
+        <!--}).then(alert => alert.present());-->
+    <!--}-->
 
-    function handleFirstNameValue(event) {
-        firstName = event.target.value;
-    }
+    <!--function handleFirstNameValue(event) {-->
+        <!--firstName = event.target.value;-->
+    <!--}-->
 
-    function handleLastNameValue(event) {
-        lastName = event.target.value;
-    }
-</script>
+    <!--function handleLastNameValue(event) {-->
+        <!--lastName = event.target.value;-->
+    <!--}-->
+<!--</script>-->

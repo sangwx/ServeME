@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Customer } from '../../customer';
 
 @Component({
     selector: 'app-register',
@@ -6,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+    customer: Customer = {
+        firstName: ' ',
+        lastName: ' ',
+        password: ' ',
+        phoneNumber: 666,
+        email: ' ',
+        address: ' ',
+        identity: ' ',
+    };
+
     flag: boolean;
 
     constructor() {
