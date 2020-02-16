@@ -6,12 +6,12 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label>Username:</ion-label>
-    <ion-input placeholder="username" username="username" required type="text"></ion-input>
+    <ion-label>Email:</ion-label>
+    <ion-input placeholder="email" [(ngModel)]="email" required type="text" (ionBlur)="onBlur()"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Password:</ion-label>
-    <ion-input placeholder="password" password="password" required type="text" ></ion-input>
+    <ion-input placeholder="password" [(ngModel)]="password"  required type="text" (ionBlur)="onBlur()"></ion-input>
   </ion-item>
   <ion-item>
     <a routerLink='/tab1' routerLinkActive="active" class="underline"> Guest </a>

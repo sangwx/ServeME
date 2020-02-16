@@ -24,8 +24,8 @@ const routes: Routes = [
     loadChildren: () => import('./public/setup/setup.module').then( m => m.SetupPageModule)
   },
   {
-    path: 'personal',
-    loadChildren: () => import('./public/personal/personal.module').then( m => m.PersonalPageModule)
+    path: 'help',
+    loadChildren: () => import('./public/help/help.module').then( m => m.HelpPageModule)
   }
 ];
 @NgModule({

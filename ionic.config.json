@@ -1,5 +1,7 @@
 {
   "name": "ServeME",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

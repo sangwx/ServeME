@@ -6,6 +6,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button (click)="setup()" expand="block">set up</ion-button>
-</ion-content>
+<ion-item>
+  <ion-avatar slot="start">
+
+  </ion-avatar>
+  <ion-label>
+    <h3>FirstName:</h3>
+    <p>LastName:</p>
+    <p>Email:</p>
+  </ion-label>
+</ion-item>
+
+<ion-list>
+  <ion-item [routerLink] = "'/setup'" [detail]="true">
+    <ion-icon slot="end" [name]="settings"></ion-icon>
+    Setting
+  </ion-item>
+
+  <ion-list>
+    <ion-item [routerLink] = "'/help'" [detail]="true">
+      <ion-icon slot="end" [name]="settings"></ion-icon>
+      Help
+    </ion-item>
+
+  <ion-list>
+    <ion-item [routerLink] = "'/login'" [detail]="true">
+      <ion-icon slot="end" [name]="settings"></ion-icon>
+      Sign Out
+    </ion-item>
+</ion-list>

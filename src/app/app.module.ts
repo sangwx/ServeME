@@ -9,11 +9,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {RegisterPage} from './public/register/register.page';
+
 
 import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
-  declarations: [AppComponent, RegisterPage],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
