@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {RegisterComponent} from './public/register/register.component';
+import {LoginComponent} from './public/login/login.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -8,12 +10,10 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./public/login/login.module').then( m => m.LoginPageModule)
+    path: 'login', component : LoginComponent
   },
   {
-    path: 'register',
-    loadChildren: () => import('./public/register/register.module').then( m => m.RegisterPageModule)
+    path: 'register', component : RegisterComponent
   },
     {
         path: 'tab1',

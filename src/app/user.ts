@@ -1,10 +1,17 @@
 export interface User {
-    firstName: string;
-    lastName: string;
+    userName: string;
     password: string;
-    phoneNumber: number;
+    phoneNumber: string;
     email: string;
     address: string;
-    identity: string;
+    question: string;
+    answer:string;
+    role: string;
     type: string;
+
+    // userName: string;
+    // password: string;
+    // // phoneNumber: string;
+    // // email: string;
+
 }

@@ -6,7 +6,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-item>
+<ion-content fullscreen>
+  <ion-item>
   <ion-avatar slot="start">
 
   </ion-avatar>
@@ -15,23 +16,24 @@
     <p>LastName:</p>
     <p>Email:</p>
   </ion-label>
-</ion-item>
+  </ion-item>
 
-<ion-list>
+
   <ion-item [routerLink] = "'/setup'" [detail]="true">
     <ion-icon slot="end" [name]="settings"></ion-icon>
     Setting
   </ion-item>
 
-  <ion-list>
+
     <ion-item [routerLink] = "'/help'" [detail]="true">
       <ion-icon slot="end" [name]="settings"></ion-icon>
       Help
     </ion-item>
 
-  <ion-list>
+
     <ion-item [routerLink] = "'/login'" [detail]="true">
       <ion-icon slot="end" [name]="settings"></ion-icon>
       Sign Out
     </ion-item>
-</ion-list>
+
+  </ion-content>

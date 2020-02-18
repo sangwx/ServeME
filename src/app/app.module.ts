@@ -12,10 +12,11 @@ import { AppComponent } from './app.component';
 
 
 import { HttpClientModule } from '@angular/common/http';
-
+import { RegisterComponent} from './public/register/register.component';
+import { LoginComponent } from './public/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, RegisterComponent, LoginComponent],
   entryComponents: [],
   imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
