@@ -1,0 +1,209 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/login"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Register</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <form>
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+            <ion-label position="stacked">User Name <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input placeholder="Please input your name" required type="text" [(ngModel)]="user.userName" [ngModelOptions]="{standalone: true}" (ionChange)="onChange(1)" ></ion-input>
+            </ion-item>
+
+            <!--<ion-item>-->
+                <!--<ion-label position="stacked">First Name-->
+                    <!--<ion-text color="danger">*</ion-text>-->
+                <!--</ion-label>-->
+                <!--<ion-input required type="text" [(ngModel)]="user.userName"-->
+                           <!--[ngModelOptions]="{standalone: true}"></ion-input>-->
+            <!--</ion-item>-->
+
+            <!--<ion-item>-->
+            <!--<ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>-->
+            <!--<ion-input required type="text" [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}" (ionChange)="onChange(2)" (ionBlur)="onBlur()"></ion-input>-->
+            <!--</ion-item>-->
+
+            <ion-item>
+            <ion-label position="stacked">Password <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input [type]="passwordType" clearOnEdit="false" placeholder="Please input your password" required type="text" [(ngModel)]="user.passWord" [ngModelOptions]="{standalone: true}" (ionChange)="onChange(2)" ></ion-input>
+                <ion-icon slot="end" item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+            </ion-item>
+            <!--<ion-item>-->
+                <!--<ion-label position="stacked">Password-->
+                    <!--<ion-text color="danger">*</ion-text>-->
+                <!--</ion-label>-->
+                <!--<ion-input required type="text" [(ngModel)]="user.password"-->
+                           <!--[ngModelOptions]="{standalone: true}"></ion-input>-->
+            <!--</ion-item>-->
+
+            <ion-item>
+            <ion-label position="stacked">Phone Number <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input placeholder="Please input your phone number" required type="text" [(ngModel)]="user.phone" [ngModelOptions]="{standalone: true}" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+            <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input placeholder="Please input your email" required type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+            <ion-label position="stacked">Address</ion-label>
+            <ion-input placeholder="Address" [(ngModel)]="user.address" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-input placeholder="City"></ion-input>
+            <ion-input placeholder="State"></ion-input>
+            <ion-input placeholder="Zip Code"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Question:</ion-label>
+                <!--<ion-select>-->
+                    <!--<ion-select-option value="nes">Where is your birthplace ？</ion-select-option>-->
+                    <!--<ion-select-option value="n64">when is your birthday ？</ion-select-option>-->
+                    <!--<ion-select-option value="ps">What's your mother's first name ?</ion-select-option>-->
+                    <!--<ion-select-option value="genesis">What's your father's first name ?</ion-select-option>-->
+                    <!--<ion-select-option value="saturn">What's your first pet's first name ?</ion-select-option>-->
+                    <!--<ion-select-option value="snes">What is your favorite music ？</ion-select-option>-->
+                <!--</ion-select>-->
+                <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One" (ionChange)="change2($event)">
+                   <ion-select-option title="What's your first pet's first name ?" *ngFor="let q of questions" [value]="q">
+                       {{q.q}}
+                   </ion-select-option>
+                </ion-select>
+            </ion-item>
+
+
+
+            <ion-item>
+                <ion-label position="stacked">Answer: </ion-label>
+                <ion-input placeholder="Please input your answer"required type="text" [(ngModel)]="user.answer" [ngModelOptions]="{standalone: true}"></ion-input>
+            </ion-item>
+
+
+            <ion-radio-group (ionChange)="change()" value="c"  [(ngModel)]="langSelect" name="langSelect">
+            <ion-list-header>
+            <ion-label>Role</ion-label>
+            </ion-list-header>
+            <ion-item>
+            <ion-label>vendor</ion-label>
+            <ion-radio  slot="start" color="primary" value="v"  ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+            <ion-label>customer</ion-label>
+            <ion-radio  slot="start" color="primary" value="c" ></ion-radio>
+            </ion-item>
+
+            </ion-radio-group >
+            </ion-list>
+
+<div *ngIf="flag">
+    <ion-list-header>
+        <ion-label>Type</ion-label>
+    </ion-list-header>
+        <!--<ion-item *ngFor="let t of types; let i = index">-->
+            <!--<ion-label>{{t.type}}</ion-label>-->
+            <!--<ion-checkbox slot="start" color="dark" (ionChange)="change1(i, t.type)" [value]="t.type"></ion-checkbox>-->
+        <!--</ion-item>-->
+
+    <ion-item>
+        <ion-select name="t" [(ngModel)]="t" multiple="true" (ionChange)="change3($event)">
+            <ion-select-option value="Appliances">Appliances</ion-select-option>
+            <ion-select-option value="Electrical">Electrical</ion-select-option>
+            <ion-select-option value="Plumbing">Plumbing</ion-select-option>
+            <ion-select-option value="Home Cleaning">Home Cleaning</ion-select-option>
+            <ion-select-option value="Tutoring">Tutoring</ion-select-option>
+            <ion-select-option value="Packaging and Moving">Packaging and Moving</ion-select-option>
+            <ion-select-option value="Computer Repair">Computer Repair</ion-select-option>
+            <ion-select-option value="Home Repair and Painting">Home Repair and Painting</ion-select-option>
+            <ion-select-option value="Pest Control">Pest Control</ion-select-option>
+        </ion-select>
+    </ion-item>
+</div>
+
+
+            <!--<ion-list *ngIf="flag" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" (ionChange)="change1()">-->
+            <!--<ion-list-header>Types</ion-list-header>-->
+
+            <!--<ion-item>-->
+            <!--<ion-label>Appliances</ion-label>-->
+            <!--<ion-checkbox color="dark" checked slot="start" value="A" ></ion-checkbox>-->
+            <!--</ion-item>-->
+
+            <!--<ion-item>-->
+            <!--<ion-checkbox color="dark" slot="start" value="Ele" ></ion-checkbox>-->
+            <!--<ion-label>Electrical</ion-label>-->
+            <!--</ion-item>-->
+
+            <!--<ion-item>-->
+            <!--<ion-checkbox color="dark" slot="start" value="P" ></ion-checkbox>-->
+            <!--<ion-label>Plumbing</ion-label>-->
+            <!--</ion-item>-->
+
+            <!--<ion-item>-->
+            <!--<ion-checkbox color="dark" slot="start" value="HC" ></ion-checkbox>-->
+            <!--<ion-label>Home Cleaning</ion-label>-->
+            <!--</ion-item>-->
+
+            <!--<ion-item>-->
+            <!--<ion-checkbox color="dark" slot="start" value="T" ></ion-checkbox>-->
+            <!--<ion-label>Tutoring</ion-label>-->
+            <!--</ion-item>-->
+
+            <!--<ion-item>-->
+            <!--<ion-checkbox color="dark" slot="start" value="PM" ></ion-checkbox>-->
+            <!--<ion-label>Packaging and Moving</ion-label>-->
+            <!--</ion-item>-->
+
+            <!--<ion-item>-->
+            <!--<ion-checkbox color="dark" slot="start" value="CR" ></ion-checkbox>-->
+            <!--<ion-label>Computer Repair</ion-label>-->
+            <!--</ion-item>-->
+
+            <!--<ion-item>-->
+            <!--<ion-checkbox color="dark" slot="start" value="HPP" ></ion-checkbox>-->
+            <!--<ion-label>Home Repair and Painting</ion-label>-->
+            <!--</ion-item>-->
+
+            <!--<ion-item>-->
+            <!--<ion-checkbox color="dark" slot="start" value="PC" ></ion-checkbox>-->
+            <!--<ion-label>Pest Control</ion-label>-->
+            <!--</ion-item>-->
+
+            <!--</ion-list>-->
+
+            <div class="ion-padding">
+                <ion-button expand="block" type="submit" class="ion-no-margin" (click)="submit(user)">Create account
+                </ion-button>
+            </div>
+    </form>
+</ion-content>
+
+
+<!--<script>-->
+<!--const controller = document.querySelector('ion-alert-controller');-->
+<!--let firstName, lastName;-->
+
+<!--function processForm(event) {-->
+<!--event.preventDefault();-->
+<!--controller.create({-->
+<!--header: 'Account Created',-->
+<!--message: `Created account for: <b>${firstName} ${lastName}</b>`,-->
+<!--buttons: [{-->
+<!--text: 'OK'-->
+<!--}]-->
+<!--}).then(alert => alert.present());-->
+<!--}-->
+
+<!--function handleFirstNameValue(event) {-->
+<!--firstName = event.target.value;-->
+<!--}-->
+
+<!--function handleLastNameValue(event) {-->
+<!--lastName = event.target.value;-->
+<!--}-->
+<!--</script>-->

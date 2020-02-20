@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Check Question/Answer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-item>
+    <ion-label position="stacked">User Name <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input placeholder="Please input your name" required type="text" [(ngModel)]="userName" [ngModelOptions]="{standalone: true}" (ionChange)="onChange()" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label >Question: </ion-label>
+    <!--<ion-button (click)="getQ()" positon="left">-->
+      <!--get question-->
+    <!--</ion-button >-->
+    <ion-label>
+      {{question}}
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label >Answer: </ion-label>
+    <ion-input placeholder="Please input your answer"required type="text" [(ngModel)]="answer" [ngModelOptions]="{standalone: true}"></ion-input>
+  </ion-item>
+
+  <div class="ion-padding">
+    <ion-button expand="block" type="submit" class="ion-no-margin" (click)="submit()">
+      Submit
+    </ion-button>
+  </div>
+</ion-content>

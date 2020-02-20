@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Welcome to ServeME</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>User Name:</ion-label>
+    <ion-input placeholder="user name" [(ngModel)]="userName" required type="text" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Password:</ion-label>
+    <ion-input [type]="passwordType" clearOnEdit="true" placeholder="password"  [(ngModel)]="passWord"></ion-input>
+    <ion-icon slot="end" item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+  </ion-item>
+  <ion-item>
+    <a routerLink='/tab1' routerLinkActive="active" class="underline"> Guest </a>
+  </ion-item>
+  <ion-item>
+    <a routerLink='/forget' routerLinkActive="active" class="underline"> Forget Password </a>
+  </ion-item>
+
+  <ion-button (click)="login()" expand="block">Login</ion-button>
+  <ion-button (click)="register()" expand="block">Register</ion-button>
+</ion-content>
+
+<style>
+  .underline {
+    text-decoration: underline;
+  }
+</style>
+
