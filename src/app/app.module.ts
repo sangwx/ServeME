@@ -14,9 +14,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent} from './public/register/register.component';
 import { LoginComponent } from './public/login/login.component';
+import {ForgetPComponent} from './public/forget-p/forget-p.component';
+import {UpdatePComponent} from './public/update-p/update-p.component';
+
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent],
+  declarations: [AppComponent, RegisterComponent, LoginComponent, ForgetPComponent, UpdatePComponent],
   entryComponents: [],
   imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
