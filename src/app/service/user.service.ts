@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Urls } from '../Model/model.url';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../user';
+import { User } from '../Model/user';
 import { HttpService} from './http-service';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -12,16 +12,27 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
+    set userName(value: string) {
+        this._userName = value;
+    }
+    get userName() {
+        return this._userName;
+    }
   private url_register = Urls.register;
   private url_login = Urls.login;
   private url_getQuestion = Urls.getQuestion;
   private url_postAnswer = Urls.postAnswer;
   private url_postNewPwd = Urls.postNewPwd;
 
+  private _userName: string;
+
+
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-  constructor(private http: HttpService, private http1: HttpClient, private router : Router) { }
+  constructor(private http: HttpService, private http1: HttpClient, private router : Router) {
+
+  }
 
 
     // getUser (): Observable<User[]> {

@@ -23,8 +23,9 @@ const routes: Routes = [
   {
     path: 'register', component : RegisterComponent
   },
+
     {
-        path: 'tab1',
+        path: 'tabs/tab1/:userName',
         loadChildren: () => import('./tab1/tab1.module').then( m => m.Tab1PageModule)
     },
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: 'tab4',
     loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)
+  },
+  {
+    path: 'new-request',
+    loadChildren: () => import('./new-request/new-request.module').then( m => m.NewRequestPageModule)
   },
 
 ];

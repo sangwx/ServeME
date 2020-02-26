@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../user';
+import { User } from '../../Model/user';
 import { ToastController } from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../service/user.service';
@@ -18,7 +18,8 @@ export class ForgetPComponent implements OnInit {
   question : string;
   answer : string;
 
-  constructor(private userService: UserService, public toastController: ToastController, private router: Router, public activeRoute: ActivatedRoute) {
+  constructor(private userService: UserService, public toastController: ToastController,
+              private router: Router, public activeRoute: ActivatedRoute) {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.userName = params['name'];
           console.log('name:' + this.userName);
@@ -41,12 +42,12 @@ export class ForgetPComponent implements OnInit {
   onChange(){
       this.userService.getQuestion(this.userName).subscribe( res => {
 
-          console.log(res.result);
+          //console.log(res.result);
           this.question = res.result;
       })
   }
     change(index){
-        console.log(index.detail.value.q);
+        //console.log(index.detail.value.q);
         this.question = index.detail.value.q;
 
     }

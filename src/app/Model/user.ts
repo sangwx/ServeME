@@ -3,11 +3,14 @@ export interface User {
     passWord: string;
     phone: string;
     email: string;
-    address: string;
+    userDetailAddress: string;
+    userCity: string;
+    userState: string;
     question: string;
+    userZipCode: string;
     answer:string;
     role: string;
-    type: string;
+    type: string[];
 
     // userName: string;
     // password: string;

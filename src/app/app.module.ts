@@ -16,6 +16,8 @@ import { RegisterComponent} from './public/register/register.component';
 import { LoginComponent } from './public/login/login.component';
 import {ForgetPComponent} from './public/forget-p/forget-p.component';
 import {UpdatePComponent} from './public/update-p/update-p.component';
+import {Camera} from "@ionic-native/camera/ngx";
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {UpdatePComponent} from './public/update-p/update-p.component';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    // Camera,
+    //   ImagePicker
   ],
   bootstrap: [AppComponent]
 })

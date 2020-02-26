@@ -9,9 +9,17 @@ import { Router} from '@angular/router';
 export class Tab3Page {
 
   constructor(private router: Router) {}
-  setup() {
-      this.router.navigate(['setup']);
+  Signout() {
+      this.clearToken();
       console.log('setup');
   }
+
+  PersonInfo(){
+
+  }
+
+    clearToken() {
+        window.localStorage.setItem('app-video-ai-token', null);
+    }
 
 }

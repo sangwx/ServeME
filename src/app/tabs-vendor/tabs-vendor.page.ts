@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-tabs-vendor',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabs-vendor.page.scss'],
 })
 export class TabsVendorPage implements OnInit {
+    public userName: string;
 
-  constructor() { }
+  constructor(public activeRoute: ActivatedRoute) {
+      this.activeRoute.queryParams.subscribe((params: Params) => {
+          this.userName = params['name'];
+          console.log('name:' + this.userName);
+      });
+  }
 
   ngOnInit() {
   }

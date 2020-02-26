@@ -7,14 +7,20 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-item>
+  <ion-item onclick="PersonInfo()">
   <ion-avatar slot="start">
 
   </ion-avatar>
   <ion-label>
     <h3>UserName:</h3>
+    <ion-label>
+      <!--UserName: {{username}}-->
+    </ion-label>
     <!--<p>LastName:</p>-->
     <p>Email:</p>
+    <ion-label>
+      Email
+    </ion-label>
   </ion-label>
   </ion-item>
 
@@ -32,7 +38,7 @@
 
 
     <ion-item [routerLink] = "'/login'" [detail]="true">
-      <ion-icon slot="end" [name]="settings"></ion-icon>
+      <ion-icon slot="end" [name]="settings" (click) = Signout()></ion-icon>
       Sign Out
     </ion-item>
 

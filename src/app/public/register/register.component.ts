@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../user';
+import { User } from '../../Model/user';
 import { ToastController } from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../service/user.service';
@@ -24,11 +24,14 @@ export class RegisterComponent implements OnInit {
     passWord: "",
     phone: "",
     email: "",
-    address: "",
+    userDetailAddress: "",
+      userCity: "",
+      userState: "",
+      userZipCode: "",
       question:"",
       answer: "",
     role: "c",
-    type: ''
+    type: []
 };
 //         user : User = {
 //         userName: '',
@@ -211,7 +214,9 @@ export class RegisterComponent implements OnInit {
 
     change3(index){
       console.log('-------'+index.detail.value);
-      this.user.type = index.detail.value.toString();
+      this.user.type = index.detail.value;
+      console.log('------->>' + this.user.type);
+      //this.user.type.join(index.detail.value);
     }
 
     private requestFailed(err) {
