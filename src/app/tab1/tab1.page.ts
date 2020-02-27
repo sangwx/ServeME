@@ -109,11 +109,10 @@ export class Tab1Page {
     getItems(ev:any){
         const query = ev.target.value.toLowerCase();
         requestAnimationFrame(() => {
-            this.items.forEach(gititem => {
+            this.items.forEach(item => {
                 if(item == query){
                     console.log('YES' + item);
-                }
-            });
+                }});
         });
     }
 
