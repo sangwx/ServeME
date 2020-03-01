@@ -1,151 +1,140 @@
-import { Injectable } from '@angular/core';
-import { Urls } from '../Model/model.url';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../Model/user';
-import { HttpService} from './http-service';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Urls} from '../Model/model.url';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {User} from '../Model/user';
+import {HttpService} from './http-service';
+import {Observable, of} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserService {
+
+
+    set user(value: User) {
+        this._user = value;
+    }
+
+    get user() {
+        return this._user;
+    }
+
     set userName(value: string) {
         this._userName = value;
     }
+
     get userName() {
         return this._userName;
     }
-  private url_register = Urls.register;
-  private url_login = Urls.login;
-  private url_getQuestion = Urls.getQuestion;
-  private url_postAnswer = Urls.postAnswer;
-  private url_postNewPwd = Urls.postNewPwd;
 
-  private _userName: string;
+    private url_register = Urls.register;
+    private url_login = Urls.login;
+    private url_getQuestion = Urls.getQuestion;
+    private url_postAnswer = Urls.postAnswer;
+    private url_postNewPwd = Urls.postNewPwd;
+    private url_getUserInfo = Urls.getUserInfo;
+    private url_updateUserInfo = Urls.updateUserInfo;
+    private url_updatePwd = Urls.loginPwd;
 
-
-    httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-  constructor(private http: HttpService, private http1: HttpClient, private router : Router) {
-
-  }
+    private _userName: string;
+    private _user: User;
 
 
-    // getUser (): Observable<User[]> {
-    //     return this.http1.get<User[]>(this.urls)
-    //         .pipe(
-    //             tap(_ => this.log('fetched heroes')),
-    //             catchError(this.handleError<User[]>('getUser', []))
-    //         );
-    // }
-  //
-  addUser (user: User): Observable<any> {
-      return this.http1.post<User>(this.url_register, JSON.stringify(user), this.httpOptions).pipe(
-          tap(body => console.log(body))
-      );
-  }
+    // httpOptions = {
+    //     headers: new HttpHeaders({Authorization: UserService.getToken() ? 'Bearers ' + UserService.getToken() : ''})
+    // };
+    // httpOptions = {
+    //     headers: new HttpHeaders().set('Content-Type', 'application/json')
+    //         .set('Authorization', 'Bearer ' + this.getToken())
+    // };
 
-  login (email: string, password: string): Observable<any> {
-      let json = {
-          "userName": email,
-          "passWord": password
-      }
-      console.log('++++' + JSON.stringify(json));
-      // this.json_data.put("userName", email);
-      // this.json_data.put
-      return this.http1.post<any>(this.url_login, JSON.stringify(json), this.httpOptions).pipe(
-          tap(body => console.log(body))
-      );
-  }
+    constructor(private http: HttpService,
+                private http1: HttpClient,
+                private router: Router
+    ) {
 
-    // login(email: string, password: string) {
-    //   return new Promise((resolve, reject => {
-    //       this.http1.post(this.url_login, email, password)
-    //   } ))
-    // }
+    }
 
-    getQuestion (name: string): Observable<any> {
+
+    addUser(user: User): Observable<any> {
+        const headers = {headers: {'Content-Type': 'application/json'}};
+        return this.http1.post<User>(this.url_register, JSON.stringify(user), headers).pipe(
+            tap(body => console.log(body))
+        );
+    }
+
+    login(email: string, password: string): Observable<any> {
+        const headers = {headers: {'Content-Type': 'application/json'}};
+        let json = {
+            'userName': email,
+            'passWord': password
+        };
+        return this.http1.post<any>(this.url_login, JSON.stringify(json), headers).pipe(
+            tap(body => console.log(body))
+        );
+    }
+
+    getQuestion(name: string): Observable<any> {
         let json1 = {
-            "userName": name
+            'userName': name
         };
-        return this.http1.post<any>(this.url_getQuestion, JSON.stringify(json1), this.httpOptions).pipe(
+        return this.http1.post<any>(this.url_getQuestion, JSON.stringify(json1)).pipe(
             tap(body => console.log(body))
         );
     }
 
-    postAnswer (name: string, question: string, answer: string): Observable<any> {
+    postAnswer(name: string, question: string, answer: string): Observable<any> {
         let json2 = {
-            "userName": name,
-            "question": question,
-            "answer": answer
+            'userName': name,
+            'question': question,
+            'answer': answer
         };
-        return this.http1.post<any>(this.url_postAnswer, JSON.stringify(json2), this.httpOptions).pipe(
+        return this.http1.post<any>(this.url_postAnswer, JSON.stringify(json2)).pipe(
             tap(body => console.log(body))
         );
     }
 
-    postNewPwd (name: string, password: string): Observable<any> {
+    postNewPwd(name: string, password: string): Observable<any> {
         let json3 = {
-            "userName": name,
-            "passWord": password
+            'userName': name,
+            'passWord': password
         };
-        return this.http1.post<any>(this.url_postNewPwd, JSON.stringify(json3), this.httpOptions).pipe(
+        return this.http1.post<any>(this.url_postNewPwd, JSON.stringify(json3)).pipe(
             tap(body => console.log(body))
         );
     }
-    // register(params: any) {
-    //     let url1 = 'https://serve-me-java.herokuapp.com/auth/register';
-    //     //显示等待样式
-    //     this.http.showLoading('努力登录中...');
-    //     return this.http.POST(url1, params, (res, error) => {
-    //         this.http.hideLoading();
-    //         if (error) {
-    //             // 网络请求出现错误
-    //             console.log('err=' + error);
-    //         }
-    //         if (res) {
-    //             // 网络请求成功
-    //             console.log('login success');
-    //             if (res.success) {
-    //                 // this.storage.write('userInfo', res.data);
-    //                 //成功
-    //                 //  this.navCtrl.navigateForward('/home',true,{queryParams:{name:'Tom'}});
-    //                 this.router.navigate(['tabs']);
-    //                 // this.router.navigate(['/home'],{queryParams:{name:'Tom'}});
-    //             } else {
-    //                 //失败
-    //                 let msg = res.msg;
-    //                 if (!msg) {
-    //                     msg = '操作失败！';
-    //                 }
-    //                 console.log(msg);
-    //             }
-    //         }
-    //     });
-    // }
 
-    // updateUser (user: User): Observable<any> {
-    //     return this.http.put(this.urls, user, this.httpOptions).pipe(
-    //         tap(_ => this.log(`updated hero id=${hero.id}`)),
-    //         catchError(this.handleError<any>('updateHero'))
-    //     );
-    // }
 
-    // updatePassword () : Observable<any> {
-    //     return this.http1.post<User>(this.url_register, ).pipe(
-    //         tap(body => console.log(body))
-    //     );
-    // }
+    updateUser(user: User): Observable<any> {
+        return this.http1.post<any>(this.url_updateUserInfo, JSON.stringify(user)).pipe(
+            tap(body => console.log(body))
+        );
+    }
 
-    // getBillTypes() {
-    //     console.log(this.urls.GetBillTypes);
-    //     const data = this.http.get(this.urls.GetBillTypes)      .toPromise()      .then(response => console.log(response));
-    //     console.log(data);
-    // }
+    updatePassword(name: string, password: string): Observable<any> {
+        let json4 = {
+            'userName': name,
+            'passWord': password
+        };
+        return this.http1.post<User>(this.url_updatePwd, JSON.stringify(json4)).pipe(
+            tap(body => console.log(body))
+        );
+    }
+
+    getUserInfo(user: User) {
+        console.log('get' + UserService.getToken());
+        let json5 = {
+            'userName': name
+        };
+        console.log('json' + name + JSON.stringify(json5));
+        return this.http1.post<any>(this.url_getUserInfo, JSON.stringify(user)).pipe(
+            tap(body => console.log(body))
+        );
+    }
+
 
     private requestFailed(err) {
         let msg = '请求发生异常';
@@ -178,5 +167,39 @@ export class UserService {
     // }
     // private log(message: string) {
     //     this.messageService.add(`HeroService: ${message}`);
+    // }
+    static getToken(): string {
+        return window.localStorage.getItem('jwt');
+    }
+
+    /**
+     * 将token信息保存到本地缓存中 用缓存的形式实现token验证
+     * @param token
+     */
+    setToken(token) {
+        // 目前只解析token字段，缓存先只存该字段
+        //  + token.name + token.email + token.avatar + token.id + token.time
+        // JSON.stringify(token)
+        window.localStorage.setItem('jwt', token);
+    }
+
+    /**
+     * 清理token
+     */
+    clearToken() {
+        window.localStorage.setItem('jwt', null);
+    }
+
+    // decodeUserFromToken(token): User {
+    //     return this.jwtHelperService.decodeToken(token).user;
+    // }
+    // setCurrentUser(decodedUser): void {
+    //     this.loggedIn = true;
+    //     this.user.email = decodedUser.email;
+    //     this.user.phontUrl = decodedUser.photoUrl;
+    //     this.currentUser.group = decodedUser.group;
+    //     this.currentUser.role = decodedUser.role;
+    //     this.isAdmin = decodedUser.role > 10;
+    //     delete decodedUser.role;
     // }
 }

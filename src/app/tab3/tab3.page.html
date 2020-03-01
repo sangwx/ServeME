@@ -7,22 +7,30 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-item onclick="PersonInfo()">
-  <ion-avatar slot="start">
+  <ion-item (click)="PersonInfo()">
+    <div class="profile-header" (click)="selectImage()">
+      <div class="profile-userpic">
+        <ion-avatar slot="start">
+          <!--<img src="{{this.user?(this.user.phontUrl? this.user.photoUrl:this.default_photoUrl):this.default_photoUrl}}" alt="" />-->
 
-  </ion-avatar>
-  <ion-label>
-    <h3>UserName:</h3>
+          <ion-icon name="create"></ion-icon>
+          <ion-label>
+          </ion-label>
+        </ion-avatar>
+      </div>
+
+    <h3>UserName: {{this.userService.userName}}</h3>
     <ion-label>
       <!--UserName: {{username}}-->
     </ion-label>
     <!--<p>LastName:</p>-->
     <p>Email:</p>
     <ion-label>
-      Email
+      <!--Email-->
     </ion-label>
-  </ion-label>
+    </div>
   </ion-item>
+
 
 
   <ion-item [routerLink] = "'/setup'" [detail]="true">
@@ -42,4 +50,6 @@
       Sign Out
     </ion-item>
 
+  <!--<ion-button (click) = "testFirebase()" >test firebase</ion-button>-->
+  <!--<img src="{{this.photo}}">-->
   </ion-content>

@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
             //console.log('---->' + res.result[1]);
             //console.log('Json' + JSON.stringify(res.result[1]));
             console.log('token:' + JSON.stringify(res.result[0]));
-            this.setToken(JSON.stringify(res.result[0]));
+            this.setToken(res.result[0] as string);
             const json = JSON.stringify(res.result[1]);
 
             for(const item in JSON.parse(json)){
@@ -148,7 +148,7 @@ export class LoginComponent implements OnInit {
     }
 
     getToken() {
-        return window.localStorage.getItem('app-video-ai-token');
+        return window.localStorage.getItem('jwt');
     }
 
     /**
@@ -159,14 +159,14 @@ export class LoginComponent implements OnInit {
         // 目前只解析token字段，缓存先只存该字段
         //  + token.name + token.email + token.avatar + token.id + token.time
         // JSON.stringify(token)
-        window.localStorage.setItem('app-video-ai-token', token.token);
+        window.localStorage.setItem('jwt', token);
     }
 
     /**
      * 清理token
      */
     clearToken() {
-        window.localStorage.setItem('app-video-ai-token', null);
+        window.localStorage.setItem('jwt', null);
     }
 
 }

@@ -8,10 +8,11 @@ export interface User {
     userState: string;
     question: string;
     userZipCode: string;
-    answer:string;
+    answer: string;
     role: string;
     type: string[];
-
+    phontUrl: string;
+    vendorDescription: string;
     // userName: string;
     // password: string;
     // // phoneNumber: string;

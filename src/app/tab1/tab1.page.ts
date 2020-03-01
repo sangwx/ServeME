@@ -22,7 +22,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit{
     map: GoogleMap;
     userName: string;
     items=[
@@ -37,7 +37,6 @@ export class Tab1Page {
               private userService: UserService,
               private toastController: ToastController) {
 
-      this.ngOnInit();
       this.userName = this.userService.userName;
       console.log('tab1' + this.userName);
 
@@ -52,9 +51,7 @@ export class Tab1Page {
     }
 
     async ngOnInit() {
-        this.activeRoute.paramMap.subscribe(params => {
-            this.userName = params.get('userName');
-        });
+        this.userName = this.userService.userName;
         await this.platform.ready();
         await this.loadMap()
     }

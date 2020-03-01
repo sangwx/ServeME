@@ -16,10 +16,12 @@
     "@angular/animations": "^9.0.1",
     "@angular/common": "~8.2.14",
     "@angular/core": "~8.2.14",
+    "@angular/fire": "^5.4.2",
     "@angular/forms": "~8.2.14",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@auth0/angular-jwt": "^4.0.0",
     "@ionic-native/camera": "^5.21.6",
     "@ionic-native/core": "^5.21.6",
     "@ionic-native/file-transfer": "^5.21.6",
@@ -37,6 +39,7 @@
     "cordova-plugin-googlemaps": "^2.6.2",
     "cordova-plugin-telerik-imagepicker": "^2.3.3",
     "core-js": "^2.5.4",
+    "firebase": "^7.9.3",
     "ngx-toastr": "^12.0.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
@@ -86,7 +89,9 @@
         "PLAY_SERVICES_VERSION": "15.0.1",
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-plugin-camera": {},
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-telerik-imagepicker": {}
     },

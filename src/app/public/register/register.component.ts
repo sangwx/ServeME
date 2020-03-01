@@ -11,27 +11,29 @@ import { Router} from '@angular/router';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-    passwordType: string = 'password';
-    passwordIcon: string = 'eye-off';
+    passwordType = 'password';
+    passwordIcon = 'eye-off';
 
     customActionSheetOptions: any = {
         header: 'Questions:',
         subHeader: 'Please select your question:'
     };
 
-  user : User = {
-    userName: "",
-    passWord: "",
-    phone: "",
-    email: "",
-    userDetailAddress: "",
-      userCity: "",
-      userState: "",
-      userZipCode: "",
-      question:"",
-      answer: "",
-    role: "c",
-    type: []
+  user: User = {
+    userName: '',
+    passWord: '',
+    phone: '',
+    email: '',
+    userDetailAddress: '',
+      userCity: '',
+      userState: '',
+      userZipCode: '',
+      question: '',
+      answer: '',
+    role: 'c',
+    type: [],
+      vendorDescription: '',
+      phontUrl: '',
 };
 //         user : User = {
 //         userName: '',
@@ -41,10 +43,10 @@ export class RegisterComponent implements OnInit {
     flag: boolean;
     pwdMsg = '';
     nameMsg = '';
-    public langSelect= "c";
-    public t= "Appliances";
-    type= "";
-    questions= [
+    public langSelect = 'c';
+    public t = 'Appliances';
+    type = '';
+    questions = [
         {q : 'Where is your birthplace ？'},
         {q : 'when is your birthday ？'},
         {q : 'What\'s your mother\'s first name ?'},
@@ -120,7 +122,7 @@ export class RegisterComponent implements OnInit {
     }
 
     onChange(type: number) {
-        //console.log(this.user.firstName)
+        // console.log(this.user.firstName)
         if (type == 1) {
             // 用户名校验
             const nameReg = /^[a-zA-Z0-9_-]{0,}$/;
@@ -133,24 +135,11 @@ export class RegisterComponent implements OnInit {
             } else {
                 this.nameMsg = '';
             }
-        }
-        // else if (type == 2) {
-        //     const nameReg2 = /^[a-zA-Z0-9_-]{0,}$/;
-        //     if (!nameReg2.test(this.user.lastName)) {
-        //         this.toast_check();
-        //     } else if (this.user.lastName.length <= 0) {
-        //         this.toast_empty();
-        //     } else if (this.user.lastName.length > 15) {
-        //         this.toast_length();
-        //     } else {
-        //         this.nameMsg = '';
-        //     }
-        // }
-        else if (type == 2) {
-            //密码校验
-            //包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
-            //let pwdReg = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
-            //6-20个字母、数字、下划线
+        } else if (type == 2) {
+            // 密码校验
+            // 包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
+            // let pwdReg = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
+            // 6-20个字母、数字、下划线
 
             if (this.user.passWord.length > 15) {
                 this.toast_length();
@@ -177,15 +166,15 @@ export class RegisterComponent implements OnInit {
 
     submit(user: User): void {
       const emailCheck = /^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-z]{2,}$/;
-      console.log('===='+ JSON.stringify(user));
+      console.log('====' + JSON.stringify(user));
       // if(!emailCheck.test(this.user.email)){
       //      this.toast_check();
       // }
-        this.userService.addUser(user)
+      this.userService.addUser(user)
             .subscribe(user => {
                 console.log(user);
-                    this.toast_succ();
-                    this.router.navigate(['login']);
+                this.toast_succ();
+                this.router.navigate(['login']);
             },
                 err => {
                     console.log(err);
@@ -201,22 +190,22 @@ export class RegisterComponent implements OnInit {
     // change1(index){
     //   console.log(index);
     // }
-    change1(index, value){
+    change1(index, value) {
       console.log(index, value);
       this.user.type = value;
     }
 
-    change2(index){
+    change2(index) {
         console.log(index.detail.value.q);
         this.user.question = index.detail.value.q;
 
     }
 
-    change3(index){
-      console.log('-------'+index.detail.value);
+    change3(index) {
+      console.log('-------' + index.detail.value);
       this.user.type = index.detail.value;
       console.log('------->>' + this.user.type);
-      //this.user.type.join(index.detail.value);
+      // this.user.type.join(index.detail.value);
     }
 
     private requestFailed(err) {
