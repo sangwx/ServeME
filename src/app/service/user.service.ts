@@ -38,6 +38,9 @@ export class UserService {
     private url_getUserInfo = Urls.getUserInfo;
     private url_updateUserInfo = Urls.updateUserInfo;
     private url_updatePwd = Urls.loginPwd;
+    private url_getCustomerOrder = Urls.getCustomerOrder;
+    private url_CreateOreder = Urls.CreateOrder;
+    private url_getVendorOrder = Urls.getVendorOrder;
 
     private _userName: string;
     private _user: User;
@@ -73,7 +76,8 @@ export class UserService {
             'passWord': password
         };
         return this.http1.post<any>(this.url_login, JSON.stringify(json), headers).pipe(
-            tap(body => console.log(body))
+            tap(body => this.user = body)
+
         );
     }
 
@@ -125,12 +129,26 @@ export class UserService {
     }
 
     getUserInfo(user: User) {
-        console.log('get' + UserService.getToken());
-        let json5 = {
-            'userName': name
-        };
-        console.log('json' + name + JSON.stringify(json5));
+
         return this.http1.post<any>(this.url_getUserInfo, JSON.stringify(user)).pipe(
+            tap(body => console.log(body))
+        );
+    }
+
+    getCustomerOrderList(user: User){
+        return this.http1.post<any>(this.url_getCustomerOrder, JSON.stringify(user)).pipe(
+            tap(body => console.log(body))
+        );
+    }
+
+    createOrder(user: User){
+        return this.http1.post<any>(this.url_CreateOreder, JSON.stringify(user)).pipe(
+            tap(body => console.log(body))
+        );
+    }
+
+    getVendorOrderList(user: User){
+        return this.http1.post<any>(this.url_getVendorOrder, JSON.stringify(user)).pipe(
             tap(body => console.log(body))
         );
     }

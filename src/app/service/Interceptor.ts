@@ -22,8 +22,7 @@ export class BaseInterceptor implements HttpInterceptor {
                 setHeaders: {'Content-Type': 'application/json', Authorization: this.getToken() ? 'Bearer ' + this.getToken() : ''}
             });
         }
-        console.log('lanjieqi: ' + JSON.stringify(req));
-        console.log('lanjieqi: ' + this.getToken());
+
         return next.handle(req);
     }
 

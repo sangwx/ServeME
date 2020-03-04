@@ -123,6 +123,15 @@
             <ion-select-option value="Pest Control">Pest Control</ion-select-option>
         </ion-select>
     </ion-item>
+
+    <ion-item>
+    <ion-label position="stacked">Password
+    <ion-text color="danger">*</ion-text>
+    </ion-label>
+    <ion-input required type="text" [(ngModel)]="user.vendorDescription" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+
+
 </div>
 
 

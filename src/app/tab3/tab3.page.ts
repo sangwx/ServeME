@@ -28,6 +28,7 @@ export class Tab3Page {
       //this.userName = this.userService.userName;
       this.userService.getUserInfo(this.userService.user).subscribe(res => {
           console.log('getUserInfo' + res);
+          console.log('user'+JSON.stringify(this.userService.user));
       })
   }
     ngOnInit() {
