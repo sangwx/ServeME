@@ -6,20 +6,24 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content fullscreen>
-  <ion-list>
-    <ion-list-header>
-      Your Orders:
-    </ion-list-header>
+
+  <ion-label>
+    <h2> Your Orders: </h2>
+  </ion-label>
+  <ion-list *ngFor="let order of order_list">
+
 
     <ion-item>
       <ion-avatar slot="start">
         <!--<img src="./avatar-finn.png">-->
       </ion-avatar>
-      <ion-label>
-        <h2>Order ID:</h2>
-        <h3>Type of Service: </h3>
-        <p>Create Time: </p>
+
+      <ion-label >
+        <h2>Order ID: {{order.orderId}}</h2>
+        <h3>Type of Service: {{order.orderType}}</h3>
+        <p>Create Time: {{order.serviceTime}}</p>
       </ion-label>
     </ion-item>
   </ion-list>

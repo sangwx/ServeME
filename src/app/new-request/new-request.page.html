@@ -1,9 +1,74 @@
 <ion-header>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/tabs"></ion-back-button>
+  </ion-buttons>
   <ion-toolbar>
-    <ion-title>NewRequest</ion-title>
+    <ion-title>New Order Request</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">User Name: {{this.userService.user.userName}} </ion-label>
+      </ion-item>
 
+      <!--<ion-item>-->
+        <!--<ion-label position="stacked">Type: {{this.userService.user.type}} </ion-label>-->
+      <!--</ion-item>-->
+
+      <ion-item>
+        <ion-label position="stacked">Type Of Service: </ion-label>
+        <ion-input placeholder="Please input the type of service" required type="text" [(ngModel)]="order.orderType" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">State: </ion-label>
+        <ion-input placeholder="Please input the State" required type="text" [(ngModel)]="order.orderState" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">City: </ion-label>
+        <ion-input placeholder="Please input the city" required type="text" [(ngModel)]="order.orderCity" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Address: </ion-label>
+        <ion-input placeholder="Please input the address" required type="text" [(ngModel)]="order.orderDetailAddress" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Zip Code: </ion-label>
+        <ion-input placeholder="Please input the zip coed" required type="text" [(ngModel)]="order.orderZipCode" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Description: </ion-label>
+        <ion-input placeholder="Please describe your requirement" required type="text" [(ngModel)]="order.problemDescription" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Phone Number: </ion-label>
+        <ion-input placeholder="Please input the phone number" required type="text" [(ngModel)]="order.orderPhone" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Lowest Price: </ion-label>
+        <ion-input placeholder="Please input the lowest price" required type="text" [(ngModel)]="order.orderPhone" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Highest Price: </ion-label>
+        <ion-input placeholder="Please input the highest price" required type="text" [(ngModel)]="order.orderPhone" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="camera">
+
+        </ion-icon>
+      </ion-item>
+
+    </ion-list>
+  </form>
 </ion-content>

@@ -1,19 +1,16 @@
-export interface User {
+export interface Order {
+    orderId: string;
     orderType: string;
     problemDescription: string;
-    minPrice: string;
-    maxPrice: string;
-    orderState: string;
+    minPrice: number;
+    maxPrice: number;
+    orderState: number;
     orderCity: string;
     orderDetailAddress: string;
     orderZipCode: string;
     orderPhone: string;
     orderStatus: string;
     serviceTime: string;
-
-    // userName: string;
-    // password: string;
-    // // phoneNumber: string;
-    // // email: string;
+    descriptionPicture: string;
 
 }

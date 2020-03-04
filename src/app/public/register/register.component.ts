@@ -33,12 +33,9 @@ export class RegisterComponent implements OnInit {
     role: 'c',
     type: [],
       vendorDescription: '',
-      phontUrl: '',
+      photoUrl: '',
 };
-//         user : User = {
-//         userName: '',
-//         password: ''
-//     };
+
 
     flag: boolean;
     pwdMsg = '';

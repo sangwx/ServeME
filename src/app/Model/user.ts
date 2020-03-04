@@ -11,7 +11,7 @@ export interface User {
     answer: string;
     role: string;
     type: string[];
-    phontUrl: string;
+    photoUrl: string;
     vendorDescription: string;
     // userName: string;
     // password: string;

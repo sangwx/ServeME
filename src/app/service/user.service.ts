@@ -6,6 +6,7 @@ import {HttpService} from './http-service';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import { Order } from '../Model/Order';
 
 
 @Injectable({
@@ -44,6 +45,7 @@ export class UserService {
 
     private _userName: string;
     private _user: User;
+    private _order: Order;
 
 
     // httpOptions = {
