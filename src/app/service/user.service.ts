@@ -6,7 +6,7 @@ import {HttpService} from './http-service';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import { Order } from '../Model/Order';
+import { Order } from '../Model/order';
 
 
 @Injectable({
@@ -39,9 +39,7 @@ export class UserService {
     private url_getUserInfo = Urls.getUserInfo;
     private url_updateUserInfo = Urls.updateUserInfo;
     private url_updatePwd = Urls.loginPwd;
-    private url_getCustomerOrder = Urls.getCustomerOrder;
-    private url_CreateOreder = Urls.CreateOrder;
-    private url_getVendorOrder = Urls.getVendorOrder;
+
 
     private _userName: string;
     private _user: User;
@@ -78,7 +76,7 @@ export class UserService {
             'passWord': password
         };
         return this.http1.post<any>(this.url_login, JSON.stringify(json), headers).pipe(
-            tap(body => this.user = body)
+            tap(body => this.user = body.result[1])
 
         );
     }
@@ -114,46 +112,42 @@ export class UserService {
     }
 
 
-    updateUser(user: User): Observable<any> {
-        return this.http1.post<any>(this.url_updateUserInfo, JSON.stringify(user)).pipe(
-            tap(body => console.log(body))
-        );
-    }
-
-    updatePassword(name: string, password: string): Observable<any> {
-        let json4 = {
-            'userName': name,
-            'passWord': password
+    updateUserIfo(Phone: string, type: string, state: string, city: string, address: string, zipcode: string, vendordescription: string, photourl: string): Observable<any> {
+        let data = {
+            'phone': Phone,
+            'type': type,
+            'userState': state,
+            'userCity': city,
+            'userDetailAddress': address,
+            'userZipCode': zipcode,
+            'vendorDescription': vendordescription,
+            'photoUrl': photourl
         };
-        return this.http1.post<User>(this.url_updatePwd, JSON.stringify(json4)).pipe(
+        console.log('data:' + JSON.stringify(data));
+        return this.http1.post<any>(this.url_updateUserInfo, JSON.stringify(data)).pipe(
+            tap(body => console.log(body))
+        );
+        console.log(JSON.stringify(data));
+    }
+
+    // updatePassword(name: string, password: string): Observable<any> {
+    //     let json4 = {
+    //         'userName': name,
+    //         'passWord': password
+    //     };
+    //     return this.http1.post<User>(this.url_updatePwd, JSON.stringify(json4)).pipe(
+    //         tap(body => console.log(body))
+    //     );
+    // }
+
+    getUserInfo() {
+
+        return this.http1.post<any>(this.url_getUserInfo, null).pipe(
             tap(body => console.log(body))
         );
     }
 
-    getUserInfo(user: User) {
 
-        return this.http1.post<any>(this.url_getUserInfo, JSON.stringify(user)).pipe(
-            tap(body => console.log(body))
-        );
-    }
-
-    getCustomerOrderList(user: User){
-        return this.http1.post<any>(this.url_getCustomerOrder, JSON.stringify(user)).pipe(
-            tap(body => console.log(body))
-        );
-    }
-
-    createOrder(user: User){
-        return this.http1.post<any>(this.url_CreateOreder, JSON.stringify(user)).pipe(
-            tap(body => console.log(body))
-        );
-    }
-
-    getVendorOrderList(user: User){
-        return this.http1.post<any>(this.url_getVendorOrder, JSON.stringify(user)).pipe(
-            tap(body => console.log(body))
-        );
-    }
 
 
     private requestFailed(err) {

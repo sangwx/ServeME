@@ -50,6 +50,18 @@ const routes: Routes = [
     path: 'new-request',
     loadChildren: () => import('./new-request/new-request.module').then( m => m.NewRequestPageModule)
   },
+  {
+    path: 'typed-request',
+    loadChildren: () => import('./typed-request/typed-request.module').then( m => m.TypedRequestPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'vendor-profile',
+    loadChildren: () => import('./vendor-profile/vendor-profile.module').then( m => m.VendorProfilePageModule)
+  },
 
 ];
 @NgModule({

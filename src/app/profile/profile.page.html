@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Personal Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="user_list">
+    <ion-item-divider>
+    </ion-item-divider>
+
+    <!--    <ion-item [routerLink] = "" >-->
+    <!--      <ion-avatar slot="end">-->
+    <!--        <img src="/assets/user.png">-->
+    <!--      </ion-avatar>-->
+    <!--      <ion-icon slot="end" [name]="settings"></ion-icon>-->
+    <!--      Photo-->
+    <!--    </ion-item>-->
+
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <!--      <ion-input type="string" slot="end" placeholder={{this.username}} [(ngModel)]= username></ion-input>-->
+      <ion-label slot="end">{{this.username}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="string" slot="end" placeholder='New password' [(ngModel)]= password></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Phone</ion-label>
+      <ion-input type="string" slot="end" placeholder={{this.phone}} [(ngModel)]= phone></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>E-mail</ion-label>
+      <ion-label slot="end">{{this.email}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>State</ion-label>
+      <ion-input type="string" slot="end" placeholder={{this.state}} [(ngModel)]= state></ion-input>
+    </ion-item>
+
+    <ion-item [routerLink] = "" >
+      <ion-label>City</ion-label>
+      <ion-input type="string" slot="end" placeholder={{this.city}} [(ngModel)]= city></ion-input>
+    </ion-item>
+
+    <ion-item [routerLink] = "" >
+      <ion-label>Address</ion-label>
+      <ion-input type="string" slot="end" placeholder={{this.address}} [(ngModel)]="address" ></ion-input>
+    </ion-item>
+
+    <ion-item [routerLink] = "" >
+      <ion-label>Zipcode</ion-label>
+      <ion-input type="string" slot="end" placeholder={{this.zipcode}} [(ngModel)] = zipcode></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="submit()">submit</ion-button>
+
+
+
+  </ion-list>
+
+</ion-content>

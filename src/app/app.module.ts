@@ -22,6 +22,9 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import * as firebase from 'firebase';
+import { Tab1PageModule } from './tab1/tab1.module';
+import {SearchPageComponent} from './public/search-page/search-page.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 export function tokenGetter() {
     return localStorage.getItem('jwt');
@@ -42,13 +45,14 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, ForgetPComponent, UpdatePComponent],
-  entryComponents: [],
+  declarations: [AppComponent, RegisterComponent, LoginComponent, ForgetPComponent, UpdatePComponent,SearchPageComponent, DashboardComponent],
+  entryComponents: [SearchPageComponent, DashboardComponent],
   imports: [BrowserModule,
       FormsModule,
       IonicModule.forRoot(),
       AppRoutingModule,
       HttpClientModule,
+
       ],
   providers: [
     StatusBar,

@@ -15,17 +15,11 @@
       </ion-item>
 
       <!--<ion-item>-->
-        <!--<ion-label position="stacked">Type: {{this.userService.user.type}} </ion-label>-->
+      <!--<ion-label position="stacked">Type: {{this.userService.user.type}} </ion-label>-->
       <!--</ion-item>-->
 
       <ion-item>
-        <ion-label position="stacked">Types of Service:</ion-label>
-
-        <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One" (ionChange)="change2($event)">
-          <ion-select-option title="What's your first pet's first name ?" *ngFor="let q of types" [value]="q">
-            {{q.type}}
-          </ion-select-option>
-        </ion-select>
+        <ion-label position="stacked"><h1>Type of Service: {{this.type}}</h1> </ion-label>
       </ion-item>
 
       <ion-item>
@@ -61,40 +55,37 @@
       <ion-item>
         <ion-label position="stacked">Service time: </ion-label>
         <div style="display: flex; align-items: center">
-        <ion-input placeholder="service time(hours)" required type="text" [(ngModel)]="order.serviceTime" [ngModelOptions]="{standalone: true}" ></ion-input>
-        <ion-text >hour(s)</ion-text>
+          <ion-input placeholder="service time(hours)" required type="text" [(ngModel)]="order.serviceTime" [ngModelOptions]="{standalone: true}" ></ion-input>
+          <ion-text >hour(s)</ion-text>
         </div>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Lowest Price: </ion-label>
         <div style="display: flex; align-items: center">
-        <ion-input placeholder="Please input the lowest price" required type="text" [(ngModel)]="order.minPrice" [ngModelOptions]="{standalone: true}" > </ion-input>
-        <ion-text >$</ion-text>
+          <ion-input placeholder="Please input the lowest price" required type="text" [(ngModel)]="order.minPrice" [ngModelOptions]="{standalone: true}" > </ion-input>
+          <ion-text >$</ion-text>
         </div>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Highest Price: </ion-label>
         <div style="display: flex; align-items: center">
-        <ion-input placeholder="Please input the highest price" required type="text" [(ngModel)]="order.maxPrice" [ngModelOptions]="{standalone: true}" ></ion-input>
-        <ion-text >$</ion-text>
+          <ion-input placeholder="Please input the highest price" required type="text" [(ngModel)]="order.maxPrice" [ngModelOptions]="{standalone: true}" ></ion-input>
+          <ion-text >$</ion-text>
         </div>
       </ion-item>
 
       <ion-item>
         <ion-icon name="camera" (click)="takePhoto()">
-        <img src="" />
+
         </ion-icon>
-
-        <!--<img height="150" width="150" src="{{this.img}}"/>-->
-
       </ion-item>
 
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="submit(order)">Create Order
+      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="submit(order)">Create account
       </ion-button>
     </div>
   </form>

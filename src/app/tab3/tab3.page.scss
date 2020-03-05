@@ -2,10 +2,18 @@ ion-content ion-toolbar {
   --background: translucent;
 }
 .profile-header {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 100px;
   background-color: rgb(190, 190, 190, 0.2);
 }
 
 .profile-userpic {
-  position: relative;
+  //position: relative;
+  span{float:left};
+}
+
+.right {
+  span{float:right};
 }

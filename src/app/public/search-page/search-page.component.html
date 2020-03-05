@@ -1,0 +1,11 @@
+<ion-header>
+  <div id="closedButton">
+    <ion-icon name="chevron-back-outline" (click)="closeModal()"></ion-icon>
+  </div>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-item>
+    <ion-searchbar placeholder="Search" cancelButtonText="Cancel"  animated="true" (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-item>
+</ion-content>

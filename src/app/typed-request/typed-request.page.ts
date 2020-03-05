@@ -10,19 +10,15 @@ import * as firebase from 'firebase';
 import { ActionSheetController } from '@ionic/angular';
 import { ImageService } from '../service/image.service';
 import { LoadingController } from '@ionic/angular';
-
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'app-new-request',
-  templateUrl: './new-request.page.html',
-  styleUrls: ['./new-request.page.scss'],
+  selector: 'app-typed-request',
+  templateUrl: './typed-request.page.html',
+  styleUrls: ['./typed-request.page.scss'],
 })
-export class NewRequestPage implements OnInit {
-    customActionSheetOptions: any = {
-        header: 'Types:',
-        subHeader: 'Please select one type:'
-    };
-    date =new Date();
+export class TypedRequestPage implements OnInit {
+  public type: string;
 
 
     order: { orderId: string; orderType: string; problemDescription: string; minPrice: number; maxPrice: number; orderState: string; orderCity: string; orderDetailAddress: string; orderZipCode: string; orderPhone: string; orderStatus: number; serviceTime: string; descriptionPicture: string } = {
@@ -39,7 +35,6 @@ export class NewRequestPage implements OnInit {
         orderStatus: 1,
         serviceTime: '',
         descriptionPicture: '',
-
     };
 
     types = [
@@ -54,15 +49,20 @@ export class NewRequestPage implements OnInit {
         {type : 'Pest Control'}
 
     ];
-    public img: string;
 
-  constructor(public userService: UserService,
+  constructor(private activeRoute: ActivatedRoute,
+              public userService: UserService,
               public orderService: OrderService,
               private router: Router,
               private toastController: ToastController,
               private actionSheetController: ActionSheetController,
               private imageService: ImageService,
-              private loadingController: LoadingController) { }
+              private loadingController: LoadingController) {
+      this.activeRoute.queryParams.subscribe((params: Params) => {
+          this.type = params['type'];
+          console.log('type:' + this.type);
+      });
+  }
 
   ngOnInit() {
   }
@@ -96,21 +96,18 @@ export class NewRequestPage implements OnInit {
                 handler: () => {
                     this.imageService.getImageFromLibrary().then(
                         (imageData) => {
-                            const parts = this.convertBase64ToBlob(imageData);
-                            let fileUrl = window.URL.createObjectURL(parts);
-                            this.img=fileUrl;
                             // convert base64 to base64Url
                             const base64Image = 'data:image/jpeg;base64,' + imageData;
                             // const base64Image =  imageData;
-                            const storageRef = firebase.storage().ref('static/photo/' + this.order.orderType + '.jpg');
+                            const storageRef = firebase.storage().ref('static/photo/' + this.userService.userName + '.jpg');
                             this.presentLoading();
                             storageRef.putString(base64Image, 'data_url').then( snapshot => {
+                                this.toast_succ();
                                 console.log('upload successful');
                                 // get a url of uploaded img just now
                                 storageRef.getDownloadURL().then(url => {
-
+                                    // loading end
                                     this.loadingDismiss();
-                                    this.toast_succ();
                                     this.order.descriptionPicture = url;
 
                                 });
@@ -129,20 +126,16 @@ export class NewRequestPage implements OnInit {
                     handler: () => {
                         this.imageService.getImageFromCamera().then(
                             (imageData) => {
-                                // const parts = this.convertBase64ToBlob(imageData);
-                                // const fileUrl = window.URL.createObjectURL(parts);
-                                // this.img=fileUrl;
-
                                 const base64Image = 'data:image/jpeg;base64,' + imageData;
                                 // const base64Image =  imageData;
-                                const storageRef = firebase.storage().ref('static/photo' + this.order.orderType + 'jpg');
+                                const storageRef = firebase.storage().ref('static/photo' + this.userService.userName + 'jpg');
                                 this.presentLoading();
                                 storageRef.putString(base64Image, 'data_url').then( snapshot => {
                                     console.log('upload successful');
+                                    this.toast_succ();
                                     console.log(snapshot);
                                     this.loadingDismiss();
                                     storageRef.getDownloadURL().then(url => {
-                                        this.toast_succ();
                                         this.order.descriptionPicture = url;
                                     });
                                 }).catch( err => {
@@ -178,57 +171,16 @@ export class NewRequestPage implements OnInit {
     }
 
     submit(order: Order){
-    if(this.order.minPrice > this.order.maxPrice){
-      this.toast_price();
-    }
-    else{
-
-        this.orderService.createOrder(order).subscribe( order =>{
-
-            console.log('order' + order);
-            this.router.navigate(['tabs']);
-        })
-    }
-
-    }
-    private convertBase64ToBlob(Base64Image: any) {
-        // SPLIT INTO TWO PARTS
-        const parts = Base64Image.split(';base64,');
-        // HOLD THE CONTENT TYPE
-        const imageType = parts[0].split(':')[1];
-        // DECODE BASE64 STRING
-        const decodedData = window.atob(parts[1]);
-        // CREATE UNIT8ARRAY OF SIZE SAME AS ROW DATA LENGTH
-        const uInt8Array = new Uint8Array(decodedData.length);
-        // INSERT ALL CHARACTER CODE INTO UINT8ARRAY
-        for (let i = 0; i < decodedData.length; ++i) {
-            uInt8Array[i] = decodedData.charCodeAt(i);
+        if(this.order.minPrice > this.order.maxPrice){
+            this.toast_price();
         }
-        // RETURN BLOB IMAGE AFTER CONVERSION
-        return new Blob([uInt8Array], { type: imageType });
+        else{
+            this.orderService.createOrder(order).subscribe( order =>{
+                console.log('order' + order);
+                this.router.navigate(['tabs']);
+            })
+        }
+
     }
-
-    // mes(){
-    //     var imgs = document.getElementById("file");
-    //     var img = document.getElementById("img");
-    //     var reader = new FileReader();
-    //     reader.readAsArrayBuffer(imgs.files[0]);
-    //     reader.οnlοad=function(e){
-    //         //	console.log(JSON.stringify(this.result) );
-    //         var bf = this.result;
-    //         var bytes = new Uint8Array(bf);//把arrayBuffer转换为byte处理
-    //         console.log("bytes:"+JSON.stringify(bytes));
-    //         for(var i = 6400 ; i < 7600; i ++){//随意修改数据
-    //             bytes[i]=0xff;
-    //         }
-    //
-    //         //	console.log("bytes:"+JSON.stringify(bytes));
-    //         var blob = new Blob([bytes],{type:"text/plain"});
-    //         console.log(blob);
-    //         var str = URL.createObjectURL(blob);
-    //         img.src = str;
-    //     }
-
-
 
 }

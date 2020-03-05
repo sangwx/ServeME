@@ -15,6 +15,10 @@ import { NavController,NavParams} from '@ionic/angular';
 import { User } from '../Model/user';
 import {UserService} from '../service/user.service';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { SearchPageComponent } from '../public/search-page/search-page.component';
+import {DashboardComponent} from '../dashboard/dashboard.component';
 
 
 @Component({
@@ -30,12 +34,17 @@ export class Tab1Page implements OnInit{
         'bbb',
         'ccc'
     ];
+    type: string;
+
 
   constructor(private platform: Platform,
               public activeRoute: ActivatedRoute,
               public navCtrl: NavController,
               private userService: UserService,
-              private toastController: ToastController) {
+              private toastController: ToastController,
+              private router: Router,
+              private modalController: ModalController,
+             ) {
 
       this.userName = this.userService.userName;
       console.log('tab1' + this.userName);
@@ -54,6 +63,12 @@ export class Tab1Page implements OnInit{
         this.userName = this.userService.userName;
         await this.platform.ready();
         await this.loadMap()
+        const myModal = await this.modalController.create({
+            component: DashboardComponent,
+            cssClass: 'my-custom-modal-css'
+        });
+        return await myModal.present();
+
     }
 
     ionViewDidLoad() {
@@ -112,5 +127,17 @@ export class Tab1Page implements OnInit{
                 }});
         });
     }
+
+    async showModal(){
+          const modal = await this.modalController.create({ component: SearchPageComponent });
+          return await modal.present();
+      }
+
+    newRequest(){
+        this.router.navigate(['new-request'])
+    }
+
+
+
 
 }

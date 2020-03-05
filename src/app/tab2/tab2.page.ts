@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { UserService } from '../service/user.service';
 import { ToastController } from '@ionic/angular';
-import { Order } from '../Model/Order';
+import { Order } from '../Model/order';
+import {OrderService} from '../service/order.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-tab2',
@@ -14,10 +15,11 @@ export class Tab2Page {
   private time: string;
   private order_list: Order[];
 
-  constructor(private userService: UserService,
+  constructor(private orderService: OrderService,
+              private userService: UserService
               ) {
     console.log('tab2' + JSON.stringify(this.userService.user));
-    this.userService.getCustomerOrderList(this.userService.user).subscribe(order => {
+    this.orderService.getCustomerOrderList().subscribe(order => {
       console.log(order.result);
       this.order_list = order.result;
     })

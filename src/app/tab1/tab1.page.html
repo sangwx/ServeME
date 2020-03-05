@@ -9,66 +9,74 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-item>
-    <ion-searchbar placeholder="Filter" cancelButtonText="Custom Cancel" (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Search" cancelButtonText="Cancel" (click)="showModal()"></ion-searchbar>
   </ion-item>
 
   <!--<app-explore-container name="Customer Homepage"> Customer Homepage</app-explore-container>-->
-  <div style="height: 60%;width: 100%" id="map_canvas"></div>
-  <div style="height: 40%;width: 100%" >
+  <div style="height: 80%;width: 100%" id="map_canvas"></div>
+  <div style="height: 20%;width: 100%" >
 
 
-  <ion-item>
-    <ion-text color="dark">
-      <h3>Which type of service do you want?</h3>
-    </ion-text>
-  </ion-item>
+  <!--<ion-item>-->
+    <!--<ion-text color="dark">-->
+      <!--<h3>Which type of service do you want?</h3>-->
+    <!--</ion-text>-->
+  <!--</ion-item>-->
+
+    <!--<img src="./ComputerRepair.png" alt="" />-->
+
+    <!--<ion-item>-->
+      <!--<ion-row>-->
+        <!--<ion-col>-->
+          <!--<div>Appliances</div>-->
+        <!--</ion-col>-->
+        <!--<ion-col>-->
+          <!--<div>Electrical</div>-->
+        <!--</ion-col>-->
+        <!--<ion-col>-->
+          <!--<div>Plumbing</div>-->
+        <!--</ion-col>-->
+        <!--<ion-col>-->
+          <!--<div>ome Cleaning</div>-->
+        <!--</ion-col>-->
+      <!--</ion-row>-->
+    <!--</ion-item>-->
+
+    <!--<ion-item>-->
+      <!--<ion-row>-->
+        <!--<ion-col>-->
+          <!--<div>Tutoring</div>-->
+        <!--</ion-col>-->
+        <!--<ion-col>-->
+          <!--<div>Packaging and Moving</div>-->
+        <!--</ion-col>-->
+        <!--<ion-col>-->
+          <!--<div>Computer Repair</div>-->
+        <!--</ion-col>-->
+        <!--<ion-col>-->
+          <!--<div>Home Repair and Painting</div>-->
+        <!--</ion-col>-->
+      <!--</ion-row>-->
+    <!--</ion-item>-->
+
+    <!--<ion-item>-->
+      <!--<ion-row>-->
+        <!--<ion-col>-->
+          <!--Pest Control-->
+        <!--</ion-col>-->
+      <!--</ion-row>-->
+    <!--</ion-item>-->
 
     <ion-item>
-      <ion-row>
-        <ion-col>
-          <div>Appliances</div>
-        </ion-col>
-        <ion-col>
-          <div>Electrical</div>
-        </ion-col>
-        <ion-col>
-          <div>Plumbing</div>
-        </ion-col>
-        <ion-col>
-          <div>ome Cleaning</div>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          <div>Tutoring</div>
-        </ion-col>
-        <ion-col>
-          <div>Packaging and Moving</div>
-        </ion-col>
-        <ion-col>
-          <div>Computer Repair</div>
-        </ion-col>
-        <ion-col>
-          <div>Home Repair and Painting</div>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          Pest Control
-        </ion-col>
-      </ion-row>
+      <ion-button (click)="newRequest()" expand="block" style="display:inline-block">Create Order</ion-button>
     </ion-item>
 
   </div>
+
+
 </ion-content>
