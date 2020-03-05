@@ -125,10 +125,9 @@
     </ion-item>
 
     <ion-item>
-    <ion-label position="stacked">Password
-    <ion-text color="danger">*</ion-text>
-    </ion-label>
-    <ion-input required type="text" [(ngModel)]="user.vendorDescription" [ngModelOptions]="{standalone: true}"></ion-input>
+        <ion-label position="stacked">Description: </ion-label>
+        <textarea position="stacked" placeholder="Please describe the requirement" rows="10" cols="30" nz-input [(ngModel)]="this.user.vendorDescription" [ngModelOptions]="{standalone: true}"></textarea>
+        <!--<ion-input placeholder="Please describe your requirement" required type="text" [(ngModel)]="order.problemDescription" [ngModelOptions]="{standalone: true}" ></ion-input>-->
     </ion-item>
 
 

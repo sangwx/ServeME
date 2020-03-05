@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import {User} from '../Model/user';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
     selector: 'app-profile',
@@ -23,7 +25,7 @@ export class ProfilePage implements OnInit {
     photourl: string;
     token: string;
     password: string;
-    constructor(private userService: UserService
+    constructor(private userService: UserService, private router: Router, private toastController: ToastController
     ) {
         this.userService.getUserInfo().subscribe(res => {
 
@@ -43,39 +45,91 @@ export class ProfilePage implements OnInit {
             this.authorities = res.result['authorities'][0]['authority'];
             this.token = window.localStorage.getItem('jwt');
 
-            // console.log('name:' + this.username);
-            console.log('phone' + this.phone);
-            // console.log('email:' + this.email);
-            console.log('state:' + this.state);
-            console.log('city:' + this.city);
-            console.log('address:' + this.address);
-            console.log('zipcode:' + this.zipcode);
-            // console.log('authority:' + this.authorities);
-            // console.log('token:' + this.token);
-            console.log('type:' + this.type);
-            console.log('photourl:' + this.photourl);
-            console.log('vendordescription:' + this.vendordescription);
+
         });
     }
 
     ngOnInit() {
         this.user = this.userService.user;
     }
+    async toast_empty() {
+        const toast = await this.toastController.create({
+            message: 'Empty !',
+            duration: 2000
+        });
+        await toast.present();
+    }
+    async toast_length() {
+        const toast = await this.toastController.create({
+            message: 'Too Long !',
+            duration: 2000
+        });
+        await toast.present();
+    }
+
+    async toast_succ() {
+        const toast = await this.toastController.create({
+            message: 'Successful !',
+            duration: 2000
+        });
+        await toast.present();
+    }
+    async toast_err() {
+        const toast = await this.toastController.create({
+            message: 'Invalid Infomation !',
+            duration: 2000
+        });
+        await toast.present();
+    }
 
     submit() {
         this.userService.updateUserIfo(this.phone, this.type, this.state, this.city, this.address, this.zipcode, this.vendordescription , this.photourl).subscribe(res => {
-            console.log();
-        } );
-        console.log('update!');
+                console.log();
+                this.toast_succ();
+                },
+            err => {
+                console.log(err);
+                this.toast_err();
+            });
+
 
         this.userService.postNewPwd(this.username,this.password).subscribe(res => {
-            console.log(res);
-        });
+                console.log(res);
+                this.toast_succ();
+            },
+            err => {
+                console.log(err);
+                this.toast_err();
+            });
+        this.router.navigate(['tabs'])
+
     }
 
     clearToken() {
         window.localStorage.setItem('jwt', null);
     }
+    onChange(type: number) {
+        // console.log(this.user.firstName)
+        if (type == 1) {
+            if (this.phone.length > 15) {
+                this.toast_length();
+            } else if (this.phone.length <= 0) {
+                this.toast_empty();
+            } else {
+                console.log('type');
+            }
 
+        } else if (type == 2) {
+
+            if (this.password.length > 15) {
+                this.toast_length();
+            } else if (this.user.userName.length <= 0) {
+                this.toast_empty();
+            } else {
+                console.log('type');
+            }
+        }
+
+    }
 
 }

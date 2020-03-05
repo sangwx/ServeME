@@ -96,12 +96,13 @@ export class NewRequestPage implements OnInit {
                 handler: () => {
                     this.imageService.getImageFromLibrary().then(
                         (imageData) => {
-                            const parts = this.convertBase64ToBlob(imageData);
-                            let fileUrl = window.URL.createObjectURL(parts);
-                            this.img=fileUrl;
+
                             // convert base64 to base64Url
                             const base64Image = 'data:image/jpeg;base64,' + imageData;
-                            // const base64Image =  imageData;
+                            // const parts = this.convertBase64ToBlob(base64);
+                            // const file = window.URL.createObjectURL(parts);
+                            // this.img=file;
+
                             const storageRef = firebase.storage().ref('static/photo/' + this.order.orderType + '.jpg');
                             this.presentLoading();
                             storageRef.putString(base64Image, 'data_url').then( snapshot => {
@@ -178,17 +179,17 @@ export class NewRequestPage implements OnInit {
     }
 
     submit(order: Order){
-    if(this.order.minPrice > this.order.maxPrice){
-      this.toast_price();
-    }
-    else{
+    // if(this.order.minPrice > this.order.maxPrice){
+    //   this.toast_price();
+    // }
+
 
         this.orderService.createOrder(order).subscribe( order =>{
 
             console.log('order' + order);
             this.router.navigate(['tabs']);
         })
-    }
+
 
     }
     private convertBase64ToBlob(Base64Image: any) {
@@ -208,26 +209,6 @@ export class NewRequestPage implements OnInit {
         return new Blob([uInt8Array], { type: imageType });
     }
 
-    // mes(){
-    //     var imgs = document.getElementById("file");
-    //     var img = document.getElementById("img");
-    //     var reader = new FileReader();
-    //     reader.readAsArrayBuffer(imgs.files[0]);
-    //     reader.οnlοad=function(e){
-    //         //	console.log(JSON.stringify(this.result) );
-    //         var bf = this.result;
-    //         var bytes = new Uint8Array(bf);//把arrayBuffer转换为byte处理
-    //         console.log("bytes:"+JSON.stringify(bytes));
-    //         for(var i = 6400 ; i < 7600; i ++){//随意修改数据
-    //             bytes[i]=0xff;
-    //         }
-    //
-    //         //	console.log("bytes:"+JSON.stringify(bytes));
-    //         var blob = new Blob([bytes],{type:"text/plain"});
-    //         console.log(blob);
-    //         var str = URL.createObjectURL(blob);
-    //         img.src = str;
-    //     }
 
 
 

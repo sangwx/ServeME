@@ -86,8 +86,8 @@ export class Tab1Page implements OnInit{
         let mapOptions: GoogleMapOptions = {
             camera: {
                 target: {
-                    lat: 43.0741904,
-                    lng: -89.3809802
+                    lat: 32.7291274,
+                    lng: -97.1142801
                 },
                 zoom: 18,
                 tilt: 30
@@ -100,8 +100,8 @@ export class Tab1Page implements OnInit{
             icon: 'blue',
             animation: 'DROP',
             position: {
-                lat: 43.0741904,
-                lng: -89.3809802
+                lat: 32.7291274,
+                lng: -97.1142801
             }
         });
         marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {

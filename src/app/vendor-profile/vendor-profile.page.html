@@ -28,12 +28,12 @@
 
     <ion-item>
       <ion-label>Password</ion-label>
-      <ion-input type="string" slot="end" placeholder='New password' [(ngModel)]= password></ion-input>
+      <ion-input type="string" slot="end" placeholder='New password' [(ngModel)]= password (ionChange)="onChange(2)"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Phone</ion-label>
-      <ion-input type="string" slot="end" placeholder={{this.phone}} [(ngModel)]= phone></ion-input>
+      <ion-input type="string" slot="end" placeholder={{this.phone}} [(ngModel)]= phone (ionChange)="onChange(1)"></ion-input>
     </ion-item>
 
     <ion-item>

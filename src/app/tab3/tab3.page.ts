@@ -119,6 +119,7 @@ export class Tab3Page {
                                     } );
                                     // loading end
                                     this.loadingDismiss();
+                                    this.router.navigate(['tabs']);
                                     this.userService.getUserInfo().subscribe(user => {
 
                                         this.user = user;
@@ -153,6 +154,7 @@ export class Tab3Page {
                                         this.userService.updateUserIfo(this.phone, this.type, this.state, this.city, this.address, this.zipcode, this.vendordescription , url).subscribe(res => {
                                             console.log();
                                         } );
+                                        this.router.navigate(['tabs']);
                                         this.userService.getUserInfo().subscribe(user => {
 
                                             this.user = user;

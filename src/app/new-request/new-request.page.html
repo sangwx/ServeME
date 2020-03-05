@@ -50,12 +50,13 @@
 
       <ion-item>
         <ion-label position="stacked">Description: </ion-label>
-        <ion-input placeholder="Please describe your requirement" required type="text" [(ngModel)]="order.problemDescription" [ngModelOptions]="{standalone: true}" ></ion-input>
+        <textarea position="stacked" placeholder="Please describe the requirement" rows="10" cols="30" nz-input [(ngModel)]="order.problemDescription" [ngModelOptions]="{standalone: true}"></textarea>
+        <!--<ion-input placeholder="Please describe your requirement" required type="text" [(ngModel)]="order.problemDescription" [ngModelOptions]="{standalone: true}" ></ion-input>-->
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Phone Number: </ion-label>
-        <ion-input placeholder="Please input the phone number" required type="text" [(ngModel)]="order.orderPhone" [ngModelOptions]="{standalone: true}" ></ion-input>
+        <ion-input placeholder="Please input the phone number" required type="text" [(ngModel)]="order.orderPhone" [ngModelOptions]="{standalone: true}" (ionChange)="onChange()"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -84,7 +85,9 @@
 
       <ion-item>
         <ion-icon name="camera" (click)="takePhoto()">
-        <img src="" />
+          <!--<ion-label type="file">Choose image to upload</ion-label>-->
+          <!--<ion-input type="file" id="file" name="file" >-->
+          <!--</ion-input>-->
         </ion-icon>
 
         <!--<img height="150" width="150" src="{{this.img}}"/>-->
@@ -101,3 +104,6 @@
 
 
 </ion-content>
+<script>
+    var test = document.querySelector('input');
+</script>

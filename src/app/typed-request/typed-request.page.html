@@ -44,7 +44,8 @@
 
       <ion-item>
         <ion-label position="stacked">Description: </ion-label>
-        <ion-input placeholder="Please describe your requirement" required type="text" [(ngModel)]="order.problemDescription" [ngModelOptions]="{standalone: true}" ></ion-input>
+        <textarea position="stacked" placeholder="Please describe the requirement" rows="10" cols="30" nz-input [(ngModel)]="order.problemDescription" [ngModelOptions]="{standalone: true}"></textarea>
+        <!--<ion-input placeholder="Please describe your requirement" required type="text" [(ngModel)]="order.problemDescription" [ngModelOptions]="{standalone: true}" ></ion-input>-->
       </ion-item>
 
       <ion-item>
@@ -78,17 +79,21 @@
 
       <ion-item>
         <ion-icon name="camera" (click)="takePhoto()">
-
+          <!--<ion-label for="file">Choose image to upload</ion-label>-->
+          <!--<ion-input type="file" id="file" name="file" multiple>-->
         </ion-icon>
       </ion-item>
 
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="submit(order)">Create account
+      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="submit(order)">Create Order
       </ion-button>
     </div>
   </form>
 
 
 </ion-content>
+<script>
+    var test = document.querySelector('input');
+</script>
